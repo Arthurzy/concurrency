@@ -3,7 +3,7 @@ package com.ma.concurrency;
 import com.ma.concurrency.filter.HttpFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.web.WebMvcRegistrationsAdapter;
+//import org.springframework.boot.autoconfigure.web.WebMvcRegistrationsAdapter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -17,8 +17,8 @@ public class ConcurrencyApplication extends WebMvcConfigurerAdapter {
         SpringApplication.run(ConcurrencyApplication.class, args);
     }
     @Bean
-    public FilterRegistrationBean httpFilter(){
-        FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+    public FilterRegistrationBean<HttpFilter> httpFilter(){
+        FilterRegistrationBean<HttpFilter> registrationBean = new FilterRegistrationBean<HttpFilter>();
         registrationBean.setFilter(new HttpFilter());
         registrationBean.addUrlPatterns("/threadLocal/*");
         return  registrationBean;
